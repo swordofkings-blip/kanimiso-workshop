@@ -1,0 +1,796 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   かにみそ王のワークショップ — 紙とインクのカルテ風スタイル
+   - 白地ベース＋墨色（#2B2B28）＋落ち着いた紫（#6B4FA1）の1色差し色
+   - グラデーション・影カード・ぼかし・過度なアニメーションは使用しない
+   ========================================================================== */
+
+:root {
+  /* 配色トークン */
+  --color-paper: #ffffff;
+  --color-ground: #f8f8f5;
+  --color-ink: #2b2b28;
+  --color-ink-muted: #5c5b55;
+  --color-rule: #d6d4cc;
+  --color-rule-soft: #e7e5de;
+  --color-accent: #6b4fa1;
+  --color-accent-hover: #583f87;
+  --color-accent-tint: #f6f4fa;
+
+  /* フォントトークン（指示の2種のみ） */
+  --font-serif: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+
+  /* レイアウト基準値（1行40文字前後で読みやすい幅に制限） */
+  --sheet-max-width: 720px;
+  --radius-crisp: 2px;
+}
+
+/* リセットと基本設定 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px; /* スマホでもPCでも本文が読みやすい基準サイズ */
+  line-height: 1.85;
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* 紙のシート本体（1カラム） */
+.sheet {
+  max-width: var(--sheet-max-width);
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  background-color: var(--color-paper);
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   ヘッダー（看板の表札と目次）
+   ========================================================================== */
+
+.site-header {
+  padding-bottom: 16px;
+  border-bottom: 3px double var(--color-ink); /* カルテ・帳票の二重罫線 */
+}
+
+.site-header-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.site-name {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+}
+
+.site-status {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--color-ink-muted);
+}
+
+.status-mark {
+  display: inline-block;
+  width: 7px; /* 控えめな受付印のサイズ */
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+.site-nav {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 0.875rem;
+}
+
+.site-nav a {
+  color: var(--color-ink-muted);
+  text-decoration: none;
+  padding: 2px 0;
+  border-bottom: 1px solid transparent;
+}
+
+.site-nav a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   トップ（看板キャッチ・受付ハナ・自己紹介）
+   ========================================================================== */
+
+.hero {
+  padding: 32px 0 36px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.hero-catch {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 4.4vw, 1.72rem); /* PC幅で1行に端正に収まり、巨大文字にならないサイズ */
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+}
+
+.u-nowrap {
+  white-space: nowrap;
+}
+
+.hero-sub {
+  margin: 12px 0 0;
+  font-size: 0.9375rem;
+  color: var(--color-ink-muted);
+  line-height: 1.7;
+}
+
+/* 受付マスコット「ハナ」の窓口枠 */
+.reception {
+  margin-top: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  border: 1px solid var(--color-rule);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-crisp);
+  background-color: var(--color-paper);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.reception:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px); /* 受付まわりの小さな反応のみに限定 */
+}
+
+.reception-portrait {
+  position: relative;
+  flex-shrink: 0;
+  width: 96px; /* モバイルで圧迫しない正方サイズ */
+  height: 96px;
+  border: 1px solid var(--color-rule);
+  background-color: var(--color-ground);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hana-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hana-placeholder {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  color: var(--color-ink-muted);
+  text-align: center;
+  padding: 6px;
+}
+
+/* 画像未配置時にscript.jsから付与される状態クラス */
+.reception-portrait.is-placeholder .hana-img {
+  display: none;
+}
+
+.reception-portrait.is-placeholder .hana-placeholder {
+  display: flex;
+}
+
+.hana-silhouette {
+  width: 44px;
+  height: 44px;
+  color: var(--color-accent);
+  opacity: 0.65;
+}
+
+.hana-placeholder-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-muted);
+}
+
+.reception-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.reception-speaker {
+  margin: 0 0 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+}
+
+.reception-speech {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 0.96875rem;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.hero-intro {
+  margin: 22px 0 0;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+.hero-actions {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-crisp);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border: 1px solid var(--color-accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: var(--color-accent-tint);
+}
+
+/* ==========================================================================
+   共通セクション（罫線と余白で区切る）
+   ========================================================================== */
+
+.section {
+  padding: 36px 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.section-title {
+  margin: 0 0 20px;
+  padding-left: 12px;
+  border-left: 3px solid var(--color-accent); /* 見出しマーカーに落ち着いた紫を1色だけ使用 */
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+}
+
+.section-note {
+  margin: 14px 0 0;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   できること（台帳リスト）
+   ========================================================================== */
+
+.ledger-list {
+  margin: 0;
+  border-top: 1px solid var(--color-rule-soft);
+}
+
+.ledger-row {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.ledger-term {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 4px;
+}
+
+.ledger-desc {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   実績（作品目録）
+   ========================================================================== */
+
+.catalog-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-rule-soft);
+}
+
+.catalog-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.catalog-main {
+  min-width: 0;
+}
+
+.catalog-link {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 4px;
+}
+
+.catalog-link:hover {
+  color: var(--color-accent);
+}
+
+.catalog-desc {
+  margin: 4px 0 0;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+
+.catalog-kind {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  border: 1px solid var(--color-rule);
+  padding: 1px 8px;
+  border-radius: var(--radius-crisp);
+  white-space: nowrap;
+}
+
+.other-works {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--color-rule);
+}
+
+.other-works-title {
+  margin: 0 0 8px;
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.other-works-list {
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+}
+
+.other-works-list li + li {
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   料金の目安（帳票リスト）
+   ========================================================================== */
+
+.price-list {
+  margin: 0;
+  border-top: 1px solid var(--color-ink);
+  border-bottom: 1px solid var(--color-ink);
+}
+
+.price-row {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.price-row:last-child {
+  border-bottom: none;
+}
+
+.price-plan {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.price-name {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.price-amount {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.price-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   進め方（順序付きリスト）
+   ========================================================================== */
+
+.flow-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.flow-item:last-child {
+  border-bottom: none;
+}
+
+.flow-num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; /* 番号印の固定幅 */
+  height: 24px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: var(--radius-crisp);
+}
+
+.flow-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+/* ==========================================================================
+   大事な線引き（カルテの注意欄）
+   ========================================================================== */
+
+.notice-box {
+  padding: 18px 18px 18px 20px;
+  border: 1px solid var(--color-rule);
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-ground);
+}
+
+.notice-list {
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+.notice-list li + li {
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq-list {
+  margin: 0;
+  border-top: 1px solid var(--color-rule-soft);
+}
+
+.faq-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.faq-q {
+  font-family: var(--font-serif);
+  font-size: 0.96875rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 6px;
+}
+
+.faq-a {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-ink-muted);
+}
+
+.faq-mark {
+  color: var(--color-accent);
+  margin-right: 6px;
+}
+
+.faq-mark-a {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-right: 6px;
+}
+
+/* ==========================================================================
+   問い合わせ導線
+   ========================================================================== */
+
+.contact-lead {
+  margin: 0 0 16px;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+.contact-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding: 13px 16px;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-crisp);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.contact-link:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-tint);
+  color: var(--color-accent);
+}
+
+.contact-link--primary {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.contact-link--primary:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #ffffff;
+}
+
+.contact-link--primary .contact-meta {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.contact-label {
+  font-weight: 700;
+  font-size: 0.96875rem;
+}
+
+.contact-meta {
+  font-size: 0.8125rem;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   フッター
+   ========================================================================== */
+
+.site-footer {
+  margin-top: 12px;
+  padding-top: 24px;
+  border-top: 3px double var(--color-ink);
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+
+.footer-meta {
+  margin: 0;
+}
+
+.footer-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 4px;
+}
+
+.footer-meta-row dt {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.footer-meta-row dd {
+  margin: 0;
+}
+
+.legal-details {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-rule-soft);
+}
+
+.legal-summary {
+  cursor: pointer;
+  color: var(--color-ink-muted);
+  font-size: 0.8125rem;
+  list-style-position: outside;
+  margin-left: 1em;
+}
+
+.legal-summary:hover {
+  color: var(--color-accent);
+}
+
+.legal-text {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  background-color: var(--color-ground);
+  border-left: 2px solid var(--color-rule);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.copyright {
+  margin: 20px 0 0;
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   レスポンシブ調整（タブレット・PC幅：600px以上）
+   ========================================================================== */
+
+@media (min-width: 600px) {
+  body {
+    padding: 28px 20px;
+  }
+
+  .sheet {
+    padding: 40px 48px 56px;
+    border: 1px solid var(--color-rule);
+    min-height: auto;
+  }
+
+  .reception {
+    flex-direction: row;
+    align-items: center;
+    padding: 18px 20px;
+    gap: 20px;
+  }
+
+  .reception-portrait {
+    width: 108px; /* PC幅では少し余裕を持たせた受付枠サイズ */
+    height: 108px;
+  }
+
+  .catalog-item {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .catalog-kind {
+    align-self: baseline;
+  }
+}
+
+/* モーション軽減設定を尊重 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reception,
+  .btn-primary,
+  .btn-secondary,
+  .contact-link {
+    transition: none;
+  }
+
+  .reception:hover {
+    transform: none;
+  }
+}

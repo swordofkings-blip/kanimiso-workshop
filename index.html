@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>かにみそ王のワークショップ｜小さなWebアプリ・ツール制作</title>
+  <meta name="description" content="「こんなツールがあったら楽なのに」を形にします。AI活用の小さなWebアプリ・業務自動化・配信者向けツールを個人で制作しています。">
+  <link rel="canonical" href="https://swordofkings-blip.github.io/kanimiso-workshop/">
+
+  <!-- OGP基本設定 -->
+  <meta property="og:title" content="かにみそ王のワークショップ｜小さなWebアプリ・ツール制作">
+  <meta property="og:description" content="「こんなツールがあったら楽なのに」を形にします。AI活用の小さなWebアプリ・業務自動化・配信者向けツールを個人で制作しています。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://swordofkings-blip.github.io/kanimiso-workshop/">
+  <meta property="og:site_name" content="かにみそ王のワークショップ">
+  <meta name="twitter:card" content="summary">
+
+  <!-- 落ち着いた紫の印影をイメージした軽量SVGファビコン -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' fill='%23ffffff' stroke='%236B4FA1' stroke-width='2.5'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-size='17' font-weight='700' fill='%236B4FA1'%3E工%3C/text%3E%3C/svg%3E">
+
+  <!-- Webフォントは指示の2種のみ読み込み、表示の軽さを優先 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sheet">
+    <!-- 看板ヘッダー：工房名とページ内導線 -->
+    <header class="site-header">
+      <div class="site-header-top">
+        <p class="site-name">かにみそ王のワークショップ</p>
+        <p class="site-status" aria-label="受付状況">
+          <span class="status-mark" aria-hidden="true"></span>相談受付中
+        </p>
+      </div>
+      <nav class="site-nav" aria-label="ページ内目次">
+        <a href="#services">できること</a>
+        <a href="#works">実績</a>
+        <a href="#pricing">料金目安</a>
+        <a href="#flow">進め方</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">問い合わせ</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- トップ：キャッチ・受付マスコット「ハナ」・自己紹介 -->
+      <section class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title" class="hero-catch">「こんなツールがあったら楽なのに」<wbr><span class="u-nowrap">を形にします</span></h1>
+        <p class="hero-sub">AI活用の小さなWebアプリ・ツール制作｜診断アプリ・業務自動化・配信者向け</p>
+
+        <!-- 受付窓口エリア：ハナの画像枠と一言セリフ -->
+        <div class="reception" id="reception-desk">
+          <div class="reception-portrait" id="hana-frame">
+            <img
+              src="assets/hana.png"
+              alt="受付マスコット・ハナ"
+              id="hana-image"
+              class="hana-img"
+              width="112"
+              height="112"
+            >
+            <!-- assets/hana.png 未配置時にレイアウト崩れを防ぐためのプレースホルダー -->
+            <div class="hana-placeholder" id="hana-placeholder" aria-hidden="true">
+              <svg class="hana-silhouette" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="23" r="10" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M16 52C16 42.5 23 36 32 36C41 36 48 42.5 48 52" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M22 15C25 11.5 28.5 10 32 10C35.5 10 39 11.5 42 15" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="hana-placeholder-label">受付・ハナ</span>
+            </div>
+          </div>
+
+          <div class="reception-body">
+            <p class="reception-speaker">受付・ハナ</p>
+            <p class="reception-speech" id="hana-speech">
+              いらっしゃいませ。「これ、作れる？」だけでも大丈夫ですよ。
+            </p>
+          </div>
+        </div>
+
+        <p class="hero-intro">
+          普段から自分用に便利ツールや配信用の小物を作っている個人制作者です（元エンジニア・元ホテルマン・現役Uber配達員）。「ちょっと面倒」を解消する小物が専門で、大規模システムはお受けしていません。
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">相談・問い合わせへ</a>
+          <a href="#works" class="btn-secondary">これまでの実績を見る</a>
+        </div>
+      </section>
+
+      <!-- できること -->
+      <section id="services" class="section" aria-labelledby="services-title">
+        <h2 id="services-title" class="section-title">できること</h2>
+        <dl class="ledger-list">
+          <div class="ledger-row">
+            <dt class="ledger-term">診断・占い系Webアプリ</dt>
+            <dd class="ledger-desc">自由記述の回答をAIが判定する診断アプリなど、入力内容に合わせた結果を返すWebアプリを制作します。</dd>
+          </div>
+          <div class="ledger-row">
+            <dt class="ledger-term">業務自動化</dt>
+            <dd class="ledger-desc">スプレッドシート連携、フォームから集計・通知までの自動化、GAS（Google Apps Script）化に対応します。</dd>
+          </div>
+          <div class="ledger-row">
+            <dt class="ledger-term">配信者向けツール</dt>
+            <dd class="ledger-desc">OBSブラウザソース用のウィジェットや、コメント・字幕まわりの小物を制作します。</dd>
+          </div>
+          <div class="ledger-row">
+            <dt class="ledger-term">AI組み込み</dt>
+            <dd class="ledger-desc">文章生成・分類・判定などの処理を、既存の仕組みに組み込む試作を行います。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 実績：作品目録形式 -->
+      <section id="works" class="section" aria-labelledby="works-title">
+        <h2 id="works-title" class="section-title">実績（作品目録）</h2>
+        <ul class="catalog-list">
+          <li class="catalog-item">
+            <div class="catalog-main">
+              <a href="https://swordofkings-blip.github.io/SeikakuShindanV4/" target="_blank" rel="noopener noreferrer" class="catalog-link">
+                SeikakuShindan V4
+              </a>
+              <p class="catalog-desc">自由記述×AI判定の性格診断アプリ</p>
+            </div>
+            <span class="catalog-kind">Webアプリ</span>
+          </li>
+          <li class="catalog-item">
+            <div class="catalog-main">
+              <a href="https://kanimisokingshop.booth.pm/" target="_blank" rel="noopener noreferrer" class="catalog-link">
+                BOOTHショップ「かにみそ王のワークショップ」
+              </a>
+              <p class="catalog-desc">配信者向けツール全10点を公開中</p>
+            </div>
+            <span class="catalog-kind">BOOTH</span>
+          </li>
+          <li class="catalog-item">
+            <div class="catalog-main">
+              <a href="https://github.com/swordofkings-blip" target="_blank" rel="noopener noreferrer" class="catalog-link">
+                GitHub（swordofkings-blip）
+              </a>
+              <p class="catalog-desc">その他の公開作・ソースコード</p>
+            </div>
+            <span class="catalog-kind">GitHub</span>
+          </li>
+          <li class="catalog-item">
+            <div class="catalog-main">
+              <a href="https://note.com/kanimiso_king" target="_blank" rel="noopener noreferrer" class="catalog-link">
+                note（kanimiso_king）
+              </a>
+              <p class="catalog-desc">制作の記録や開発メモ</p>
+            </div>
+            <span class="catalog-kind">note</span>
+          </li>
+        </ul>
+
+        <div class="other-works">
+          <h3 class="other-works-title">その他の作例</h3>
+          <ul class="other-works-list">
+            <li>待機番長（配信の順番待ち管理）</li>
+            <li>出品代行の精算計算ツール</li>
+            <li>OBS用字幕CSSジェネレーター</li>
+            <li>MJsoulCoaching（雀魂コーチングAI）</li>
+            <li>Zeta要約クリッパー</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 料金目安 -->
+      <section id="pricing" class="section" aria-labelledby="pricing-title">
+        <h2 id="pricing-title" class="section-title">料金の目安</h2>
+        <dl class="price-list">
+          <div class="price-row">
+            <dt class="price-plan">
+              <span class="price-name">お試し</span>
+              <span class="price-amount">¥3,000</span>
+            </dt>
+            <dd class="price-desc">小物ツール1点、既存スクリプトの小改修</dd>
+          </div>
+          <div class="price-row">
+            <dt class="price-plan">
+              <span class="price-name">標準</span>
+              <span class="price-amount">¥15,000〜</span>
+            </dt>
+            <dd class="price-desc">小規模Webアプリ／自動化ツール1本（設計込み・納品完結）</dd>
+          </div>
+          <div class="price-row">
+            <dt class="price-plan">
+              <span class="price-name">カスタム</span>
+              <span class="price-amount">要相談</span>
+            </dt>
+            <dd class="price-desc">複数機能の組み合わせ、AI判定の本格組み込みなど</dd>
+          </div>
+        </dl>
+        <p class="section-note">※ 金額はあくまで目安です。内容を伺ってから、正式なお見積もりをお出しします。</p>
+      </section>
+
+      <!-- 進め方（手順のため番号を付与） -->
+      <section id="flow" class="section" aria-labelledby="flow-title">
+        <h2 id="flow-title" class="section-title">進め方</h2>
+        <ol class="flow-list">
+          <li class="flow-item">
+            <span class="flow-num" aria-hidden="true">1</span>
+            <p class="flow-text">下記の問い合わせ導線から、作りたい物のイメージをお聞かせください。</p>
+          </li>
+          <li class="flow-item">
+            <span class="flow-num" aria-hidden="true">2</span>
+            <p class="flow-text">できる／できない、概算の金額と期間を正直にお答えします。</p>
+          </li>
+          <li class="flow-item">
+            <span class="flow-num" aria-hidden="true">3</span>
+            <p class="flow-text">内容が固まってから正式にご依頼いただき、制作のうえ納品します（ソース一式をお渡しします）。</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 大事な線引き（指示書どおり原文のまま掲載） -->
+      <section id="boundaries" class="section" aria-labelledby="boundaries-title">
+        <h2 id="boundaries-title" class="section-title">大事な線引き</h2>
+        <div class="notice-box">
+          <ul class="notice-list">
+            <li>納品完結型です。納品後の軽微な文言・見た目修正は7日以内なら対応します</li>
+            <li>継続保守・常駐対応・運用代行は含みません（必要な場合は別途相談）</li>
+            <li>大規模開発、スマホアプリのストア公開代行、サーバーの常時監視が必要なものは対応外です</li>
+            <li>AI（Gemini等）を使う場合、APIキーの取得・設定とAPI利用料は依頼者側の負担です</li>
+            <li>個人開発のため、対応は週に数件まで。返信は夜〜深夜が多めです</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="section" aria-labelledby="faq-title">
+        <h2 id="faq-title" class="section-title">よくある質問</h2>
+        <dl class="faq-list">
+          <div class="faq-item">
+            <dt class="faq-q"><span class="faq-mark">Q.</span>アイデアだけでも相談できますか？</dt>
+            <dd class="faq-a"><span class="faq-mark-a">A.</span>できます。「これ、作れる？」だけでも大丈夫です。できない場合はできないとはっきり言います。</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-q"><span class="faq-mark">Q.</span>納品後に直したくなったら？</dt>
+            <dd class="faq-a"><span class="faq-mark-a">A.</span>軽微な修正は納品後7日以内に対応します。それ以降や機能追加は再度の依頼になります。</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-q"><span class="faq-mark">Q.</span>保守や運用もお願いできますか？</dt>
+            <dd class="faq-a"><span class="faq-mark-a">A.</span>原則として行っていません。納品物はソース一式お渡しするので、引き継ぎしやすい形にします。</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-q"><span class="faq-mark">Q.</span>急ぎの案件は？</dt>
+            <dd class="faq-a"><span class="faq-mark-a">A.</span>個人対応のため特急は基本受けていません。納期は相談時に正直にお伝えします。</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 問い合わせ導線（外部リンクのみ） -->
+      <section id="contact" class="section" aria-labelledby="contact-title">
+        <h2 id="contact-title" class="section-title">問い合わせ</h2>
+        <p class="contact-lead">ご相談やご依頼は、下記のいずれかからお気軽にご連絡ください。</p>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <a href="https://x.com/daikiti0701" target="_blank" rel="noopener noreferrer" class="contact-link contact-link--primary">
+              <span class="contact-label">X（DM）で相談する</span>
+              <span class="contact-meta">@daikiti0701</span>
+            </a>
+          </li>
+          <li class="contact-item">
+            <a href="https://kanimisokingshop.booth.pm/" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <span class="contact-label">BOOTHショップ</span>
+              <span class="contact-meta">メッセージ・既存ツールの購入はこちら</span>
+            </a>
+          </li>
+          <li class="contact-item">
+            <a href="https://note.com/kanimiso_king" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <span class="contact-label">note</span>
+              <span class="contact-meta">制作の記録を読む</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- フッター：運営者・支払い方法・特商法（折りたたみ） -->
+    <footer class="site-footer">
+      <dl class="footer-meta">
+        <div class="footer-meta-row">
+          <dt>運営者</dt>
+          <dd>かにみそ王</dd>
+        </div>
+        <div class="footer-meta-row">
+          <dt>お支払い方法</dt>
+          <dd>PayPay（加盟店申請準備中）</dd>
+        </div>
+      </dl>
+
+      <details class="legal-details">
+        <summary class="legal-summary">特定商取引法に基づく表記</summary>
+        <p class="legal-text">
+          特定商取引法に基づく表記（住所・電話番号等）につきましては、請求があった場合、遅滞なく開示します。
+        </p>
+      </details>
+
+      <p class="copyright">&copy; かにみそ王のワークショップ</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
