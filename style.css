@@ -741,6 +741,45 @@ button:focus-visible {
 }
 
 /* ==========================================================================
+   作り手について
+   ========================================================================== */
+
+.about-lead {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+.about-hours {
+  margin: 6px 0 0;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+
+.about-block {
+  margin-top: 22px;
+}
+
+.about-subtitle {
+  margin: 0 0 10px;
+  font-family: var(--font-serif);
+  font-size: 0.96875rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.about-history {
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+}
+
+.about-history li + li {
+  margin-top: 4px;
+}
+
+/* ==========================================================================
    相談の例・ハナの後押し一言
    ========================================================================== */
 
