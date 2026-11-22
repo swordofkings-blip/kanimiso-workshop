@@ -374,6 +374,21 @@ button:focus-visible {
   color: var(--color-ink-muted);
 }
 
+.ledger-sublist {
+  margin: 4px 0 0;
+  padding-left: 1.2em;
+}
+
+.ledger-sublist li + li {
+  margin-top: 3px;
+}
+
+.ledger-note {
+  margin: 8px 0 0;
+  font-size: 0.84375rem;
+  color: var(--color-ink-muted);
+}
+
 /* ==========================================================================
    実績（作品目録）
    ========================================================================== */
@@ -386,11 +401,37 @@ button:focus-visible {
 }
 
 .catalog-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 0;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 6px 14px;
+  align-items: start;
+  padding: 16px 0;
   border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.catalog-logo {
+  grid-row: 1 / span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; /* 目録の印章サイズに揃えた正方形枠 */
+  height: 38px;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-crisp);
+  background-color: var(--color-ground);
+  color: var(--color-ink);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.catalog-logo svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.catalog-item:hover .catalog-logo {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .catalog-main {
@@ -418,7 +459,8 @@ button:focus-visible {
 }
 
 .catalog-kind {
-  align-self: flex-start;
+  grid-column: 2;
+  justify-self: start;
   font-size: 0.75rem;
   color: var(--color-accent);
   border: 1px solid var(--color-rule);
@@ -766,14 +808,19 @@ button:focus-visible {
   }
 
   .catalog-item {
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 14px;
+  }
+
+  .catalog-logo {
+    grid-row: 1;
   }
 
   .catalog-kind {
-    align-self: baseline;
+    grid-column: 3;
+    justify-self: end;
+    margin-top: 2px;
   }
 }
 
@@ -786,7 +833,8 @@ button:focus-visible {
   .reception,
   .btn-primary,
   .btn-secondary,
-  .contact-link {
+  .contact-link,
+  .catalog-logo {
     transition: none;
   }
 
