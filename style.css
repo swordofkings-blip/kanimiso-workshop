@@ -721,6 +721,59 @@ button:focus-visible {
 }
 
 /* ==========================================================================
+   相談の例・ハナの後押し一言
+   ========================================================================== */
+
+.example-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-rule-soft);
+}
+
+.example-list li {
+  padding: 11px 0 11px 14px;
+  border-bottom: 1px solid var(--color-rule-soft);
+  position: relative;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+.example-list li::before {
+  content: "・";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.hana-nudge {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--color-rule);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-crisp);
+  background-color: var(--color-ground);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+}
+
+.hana-nudge-speaker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+}
+
+.hana-nudge-text {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+/* ==========================================================================
    問い合わせ導線
    ========================================================================== */
 
