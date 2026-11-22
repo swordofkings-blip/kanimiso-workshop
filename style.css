@@ -808,16 +808,33 @@ button:focus-visible {
 }
 
 .hana-nudge {
-  margin: 16px 0 0;
+  margin: 18px 0 0;
   padding: 12px 14px;
   border: 1px solid var(--color-rule);
   border-left: 3px solid var(--color-accent);
   border-radius: var(--radius-crisp);
-  background-color: var(--color-ground);
+  background-color: var(--color-paper);
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 10px;
+  align-items: center;
+  gap: 14px;
+}
+
+.hana-nudge-img {
+  flex-shrink: 0;
+  width: 64px; /* ちびキャラの表情と全身が見やすく主張しすぎないサイズ */
+  height: auto;
+  display: block;
+  border: 1px solid var(--color-rule-soft);
+  border-radius: var(--radius-crisp);
+  background-color: var(--color-paper);
+}
+
+.hana-nudge-body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
 }
 
 .hana-nudge-speaker {
@@ -830,6 +847,7 @@ button:focus-visible {
 .hana-nudge-text {
   font-family: var(--font-serif);
   font-size: 0.9375rem;
+  line-height: 1.65;
   color: var(--color-ink);
 }
 
