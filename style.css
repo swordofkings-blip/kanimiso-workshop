@@ -56,6 +56,11 @@ a {
   text-underline-offset: 3px;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 a:hover {
   color: var(--color-accent-hover);
 }
@@ -461,11 +466,13 @@ button:focus-visible {
 /* 作品目録の「口絵」サムネイル（横長16:9・細罫線・キャプション付き） */
 .catalog-figure {
   margin: 12px 0 0;
+  width: 100%;
   max-width: 360px; /* 目録の行間バランスを崩さない口絵サイズ */
 }
 
 .catalog-thumb-link {
   display: block;
+  width: 100%;
   border: 1px solid var(--color-rule);
   border-radius: var(--radius-crisp);
   background-color: var(--color-ground);
