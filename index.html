@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=20261122-3">
+  <link rel="stylesheet" href="style.css?v=20261122-4">
 </head>
 <body>
   <div class="sheet">
@@ -125,6 +125,25 @@
         </dl>
       </section>
 
+      <!-- 設計のこだわり（工房の流儀） -->
+      <section id="craft" class="section" aria-labelledby="craft-title">
+        <h2 id="craft-title" class="section-title">設計のこだわり</h2>
+        <dl class="ledger-list">
+          <div class="ledger-row">
+            <dt class="ledger-term">維持費を抑える構成</dt>
+            <dd class="ledger-desc">GAS・GitHub Pages・無料枠などを活かし、ランニングコストがかさみにくい仕組みを提案します。</dd>
+          </div>
+          <div class="ledger-row">
+            <dt class="ledger-term">引き継ぎやすい納品</dt>
+            <dd class="ledger-desc">ブラックボックスにせず、ソースコード一式と設定手順書をセットでお渡しします。</dd>
+          </div>
+          <div class="ledger-row">
+            <dt class="ledger-term">安全な自動化設計</dt>
+            <dd class="ledger-desc">AIに任せる範囲と人が確認する範囲を明確に分けて設計します。</dd>
+          </div>
+        </dl>
+      </section>
+
       <!-- 実績：作品目録形式（口絵サムネイル付き） -->
       <section id="works" class="section" aria-labelledby="works-title">
         <h2 id="works-title" class="section-title">実績（作品目録）</h2>
@@ -144,6 +163,7 @@
               <p class="catalog-desc">
                 BOOTHで一番「スキ！」を集めた作品（49件）。形態素解析と6万2千語のカスタム辞書で、配信コメントの漢字にルビを自動追加するわんコメ専用プラグインです（無料配布中）。
               </p>
+              <p class="catalog-spec"><span class="catalog-spec-label">仕様</span>形態素解析 / 62,000語カスタム辞書 / わんコメPlugin / JavaScript</p>
               <figure class="catalog-figure">
                 <a href="https://kanimisokingshop.booth.pm/items/8557516" target="_blank" rel="noopener noreferrer" class="catalog-thumb-link">
                   <img src="assets/thumb-furigana.jpg" alt="わんコメ漢字ふりがなくんの動作画面" class="catalog-thumb" width="800" height="450" loading="lazy" decoding="async">
@@ -167,6 +187,7 @@
                 SeikakuShindan V4
               </a>
               <p class="catalog-desc">自由記述×AI判定の性格診断アプリ</p>
+              <p class="catalog-spec"><span class="catalog-spec-label">仕様</span>Google Apps Script / Gemini API（自由記述の構造化判定）/ 静的フロント</p>
               <figure class="catalog-figure">
                 <a href="https://swordofkings-blip.github.io/SeikakuShindanV4/" target="_blank" rel="noopener noreferrer" class="catalog-thumb-link">
                   <img src="assets/thumb-seikaku.jpg" alt="SeikakuShindan V4の画面" class="catalog-thumb" width="800" height="450" loading="lazy" decoding="async">
@@ -190,6 +211,7 @@
                 Magic Circle
               </a>
               <p class="catalog-desc">ステージ選択・拠点強化・百科事典などを備えた、力を入れて制作したブラウザ戦略ゲームです。</p>
+              <p class="catalog-spec"><span class="catalog-spec-label">仕様</span>ブラウザ完結ゲーム設計 / 状態管理・永続化 / Vercel</p>
               <figure class="catalog-figure">
                 <a href="https://magic-circle-liard.vercel.app" target="_blank" rel="noopener noreferrer" class="catalog-thumb-link">
                   <img src="assets/thumb-magic-circle.jpg" alt="Magic Circleのタイトル画面" class="catalog-thumb" width="800" height="450" loading="lazy" decoding="async">
@@ -213,7 +235,8 @@
               <a href="https://kanimisokingshop.booth.pm/" target="_blank" rel="noopener noreferrer" class="catalog-link">
                 BOOTHショップ「かにみそ王のワークショップ」
               </a>
-              <p class="catalog-desc">配信者向けツール全10点を公開中</p>
+              <p class="catalog-desc">配信者向けツールなどを公開中</p>
+              <p class="catalog-spec"><span class="catalog-spec-label">仕様</span>OBSブラウザソース / わんコメ連携 / HTML・CSS・JavaScript</p>
               <figure class="catalog-figure">
                 <a href="https://kanimisokingshop.booth.pm/" target="_blank" rel="noopener noreferrer" class="catalog-thumb-link">
                   <img src="assets/thumb-booth.jpg" alt="BOOTHショップの公開画面" class="catalog-thumb" width="800" height="450" loading="lazy" decoding="async">
@@ -235,6 +258,7 @@
                 GitHub（swordofkings-blip）
               </a>
               <p class="catalog-desc">その他の公開作・ソースコード</p>
+              <p class="catalog-spec"><span class="catalog-spec-label">仕様</span>JavaScript / Python / Google Apps Script / 自動化ツール各種</p>
               <figure class="catalog-figure">
                 <a href="https://github.com/swordofkings-blip" target="_blank" rel="noopener noreferrer" class="catalog-thumb-link">
                   <img src="assets/thumb-github.jpg" alt="GitHubプロフィール画面" class="catalog-thumb" width="800" height="450" loading="lazy" decoding="async">
@@ -273,6 +297,7 @@
                     <span class="catalog-kind">AIカスタム</span>
                   </div>
                   <p class="catalog-desc">音声読み上げサーバーの構築、常駐ノートPCによるPC起動リレー、チャット履歴の自動アーカイブ基盤、日記運用など</p>
+                  <p class="catalog-spec"><span class="catalog-spec-label">仕様</span>音声読み上げサーバー構築 / 常駐PC起動リレー / ログ自動アーカイブ</p>
                   <figure class="catalog-figure">
                     <a href="https://note.com/kanimiso_king/n/n2990c27c3935" target="_blank" rel="noopener noreferrer" class="catalog-thumb-link">
                       <img src="assets/thumb-muse-note.jpg" alt="Museカスタム備忘録のnote記事" class="catalog-thumb" width="800" height="450" loading="lazy" decoding="async">
