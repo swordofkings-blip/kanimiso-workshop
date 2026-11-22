@@ -967,14 +967,38 @@ button:focus-visible {
   color: var(--color-accent);
 }
 
-.legal-text {
-  margin: 8px 0 0;
-  padding: 10px 12px;
+.legal-list {
+  margin: 10px 0 0;
+  padding: 12px 14px;
   background-color: var(--color-ground);
   border-left: 2px solid var(--color-rule);
   font-size: 0.8125rem;
   line-height: 1.7;
   color: var(--color-ink);
+}
+
+.legal-row {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.legal-row:first-child {
+  padding-top: 0;
+}
+
+.legal-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.legal-row dt {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.legal-row dd {
+  margin: 2px 0 0;
+  color: var(--color-ink-muted);
 }
 
 .copyright {
