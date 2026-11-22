@@ -197,8 +197,8 @@ button:focus-visible {
 .reception-portrait {
   position: relative;
   flex-shrink: 0;
-  width: 96px; /* モバイルで圧迫しない正方サイズ */
-  height: 96px;
+  width: 108px; /* 受付机と全身の構図がきれいに収まる縦長ポートレート幅 */
+  aspect-ratio: 2 / 3;
   border: 1px solid var(--color-rule);
   background-color: var(--color-ground);
   overflow: hidden;
@@ -212,6 +212,7 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
 }
 
 .hana-placeholder {
@@ -987,8 +988,7 @@ button:focus-visible {
   }
 
   .reception-portrait {
-    width: 108px; /* PC幅では少し余裕を持たせた受付枠サイズ */
-    height: 108px;
+    width: 120px; /* PC幅では少し余裕を持たせた受付ポートレート幅 */
   }
 
   .catalog-item {
